@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'SmartPageView_Example' do
+  pod 'SmartPageView', :path => '../'
+
+  target 'SmartPageView_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
