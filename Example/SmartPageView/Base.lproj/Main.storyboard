@@ -1,25 +1,82 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="NRb-42-DXV">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="SmartPageView_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5UP-05-F5J" customClass="SmartSegmentHeaderView" customModule="SmartPageView">
+                                <rect key="frame" x="0.0" y="88" width="375" height="36"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="7NO-LK-4Io"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N5L-gu-shf" customClass="SmartPageView" customModule="SmartPageView">
+                                <rect key="frame" x="0.0" y="124" width="375" height="688"/>
+                                <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="segmentHeader" destination="5UP-05-F5J" id="nZN-As-oau"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="N5L-gu-shf" firstAttribute="top" secondItem="5UP-05-F5J" secondAttribute="bottom" id="02O-gZ-hWr"/>
+                            <constraint firstAttribute="bottom" secondItem="N5L-gu-shf" secondAttribute="bottom" id="2kN-ct-K16"/>
+                            <constraint firstItem="N5L-gu-shf" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="41g-fH-RMt"/>
+                            <constraint firstItem="N5L-gu-shf" firstAttribute="top" secondItem="5UP-05-F5J" secondAttribute="bottom" id="9WC-ZH-uTU"/>
+                            <constraint firstAttribute="trailing" secondItem="N5L-gu-shf" secondAttribute="trailing" id="EuV-N7-Suq"/>
+                            <constraint firstAttribute="trailing" secondItem="N5L-gu-shf" secondAttribute="trailing" id="Gpf-Bi-bbp"/>
+                            <constraint firstItem="5UP-05-F5J" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="Jab-By-t15"/>
+                            <constraint firstItem="N5L-gu-shf" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="KZ7-vg-pye"/>
+                            <constraint firstAttribute="bottom" secondItem="N5L-gu-shf" secondAttribute="bottom" id="ajY-Gh-LfO"/>
+                            <constraint firstAttribute="trailing" secondItem="5UP-05-F5J" secondAttribute="trailing" id="duX-yP-A5x"/>
+                            <constraint firstItem="5UP-05-F5J" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="r6n-67-y2f"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="nLT-ey-ssT"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <connections>
+                        <outlet property="smartPageView" destination="N5L-gu-shf" id="oMV-RS-V5G"/>
+                        <outlet property="smartSegmentHeaderView" destination="5UP-05-F5J" id="dYN-Bg-Ndb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="256.80000000000001" y="-59.11330049261084"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="7St-qo-kB7">
+            <objects>
+                <navigationController id="NRb-42-DXV" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="RdR-j7-thn">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="jQB-jl-pJB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HhS-dw-4U1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-506" y="-59"/>
         </scene>
     </scenes>
 </document>
