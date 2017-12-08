@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="NRb-42-DXV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NRb-42-DXV">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -13,19 +14,15 @@
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="SmartPageView_Example" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
-                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5UP-05-F5J" customClass="SmartSegmentHeaderView" customModule="SmartPageView">
                                 <rect key="frame" x="0.0" y="88" width="375" height="36"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="36" id="7NO-LK-4Io"/>
+                                    <constraint firstAttribute="height" constant="36" id="Cz3-DG-dZI"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N5L-gu-shf" customClass="SmartPageView" customModule="SmartPageView">
@@ -38,18 +35,15 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="N5L-gu-shf" firstAttribute="top" secondItem="5UP-05-F5J" secondAttribute="bottom" id="02O-gZ-hWr"/>
-                            <constraint firstAttribute="bottom" secondItem="N5L-gu-shf" secondAttribute="bottom" id="2kN-ct-K16"/>
-                            <constraint firstItem="N5L-gu-shf" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="41g-fH-RMt"/>
-                            <constraint firstItem="N5L-gu-shf" firstAttribute="top" secondItem="5UP-05-F5J" secondAttribute="bottom" id="9WC-ZH-uTU"/>
-                            <constraint firstAttribute="trailing" secondItem="N5L-gu-shf" secondAttribute="trailing" id="EuV-N7-Suq"/>
-                            <constraint firstAttribute="trailing" secondItem="N5L-gu-shf" secondAttribute="trailing" id="Gpf-Bi-bbp"/>
-                            <constraint firstItem="5UP-05-F5J" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="Jab-By-t15"/>
-                            <constraint firstItem="N5L-gu-shf" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="KZ7-vg-pye"/>
-                            <constraint firstAttribute="bottom" secondItem="N5L-gu-shf" secondAttribute="bottom" id="ajY-Gh-LfO"/>
-                            <constraint firstAttribute="trailing" secondItem="5UP-05-F5J" secondAttribute="trailing" id="duX-yP-A5x"/>
-                            <constraint firstItem="5UP-05-F5J" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="r6n-67-y2f"/>
+                            <constraint firstItem="N5L-gu-shf" firstAttribute="top" secondItem="5UP-05-F5J" secondAttribute="bottom" id="9Rs-S1-AGh"/>
+                            <constraint firstItem="N5L-gu-shf" firstAttribute="trailing" secondItem="YGF-OS-2Yx" secondAttribute="trailing" id="9gt-lD-oyB"/>
+                            <constraint firstItem="5UP-05-F5J" firstAttribute="top" secondItem="YGF-OS-2Yx" secondAttribute="top" id="EqW-So-FES"/>
+                            <constraint firstAttribute="bottom" secondItem="N5L-gu-shf" secondAttribute="bottom" id="Hd6-xd-8sN"/>
+                            <constraint firstItem="5UP-05-F5J" firstAttribute="leading" secondItem="YGF-OS-2Yx" secondAttribute="leading" id="eN1-LB-D3S"/>
+                            <constraint firstItem="5UP-05-F5J" firstAttribute="trailing" secondItem="YGF-OS-2Yx" secondAttribute="trailing" id="u1a-Jm-djT"/>
+                            <constraint firstItem="N5L-gu-shf" firstAttribute="leading" secondItem="YGF-OS-2Yx" secondAttribute="leading" id="wxc-Us-bDa"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="YGF-OS-2Yx"/>
                     </view>
                     <navigationItem key="navigationItem" id="nLT-ey-ssT"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
