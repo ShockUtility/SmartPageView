@@ -29,6 +29,7 @@ open class SmartPageView: UIView {
         pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         pageViewController!.delegate = self
         pageViewController!.dataSource = self
+        
         let scrollView = pageViewController?.view.subviews.flatMap { $0 as? UIScrollView }.first
         scrollView?.scrollsToTop = false
         scrollView?.delegate = self
@@ -44,11 +45,15 @@ open class SmartPageView: UIView {
         }
         
         pageViewController?.setViewControllers([pageInfo[0].controller], direction: .forward, animated: false, completion: {done in })
-        parentController?.title = pageInfo[0].title
         parentController?.addChildViewController(pageViewController!)
         
         if let pageView = pageViewController?.view {
             self.addSubview(pageView)
+            
+            let views = ["pageView": pageView]
+            pageView.translatesAutoresizingMaskIntoConstraints = false            
+            self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[pageView]|", options: .alignAllCenterY, metrics: nil, views: views))
+            self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[pageView]|", options: .alignAllCenterX, metrics: nil, views: views))
         }
         
         pageViewController!.didMove(toParentViewController: parentController)
@@ -63,7 +68,6 @@ extension SmartPageView: UIPageViewControllerDelegate {
     public func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if let currentIndex = currentIndex , currentIndex < pageInfo.count {
             beforeIndex = currentIndex
-            parentController?.title = pageInfo[currentIndex].title
             segmentHeader?.setSelectedIndex(currentIndex)
         }
     }
