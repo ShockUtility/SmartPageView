@@ -8,9 +8,14 @@
 
 import UIKit
 
+@objc public protocol SmartPageDelegate: NSObjectProtocol {
+    func smartPageViewChanged(_ index: Int, title: String)
+}
+
 open class SmartPageView: UIView {
 
-    @IBOutlet var segmentHeader: SmartSegmentHeaderView?
+    @IBOutlet open weak var delegate: SmartPageDelegate?
+    @IBOutlet var segmentHeader: SmartSegmentView?
     
     fileprivate var parentController: UIViewController?
     fileprivate var pageViewController: UIPageViewController?
@@ -44,6 +49,7 @@ open class SmartPageView: UIView {
             header.titles = pageInfo.map{ $0.title }.joined(separator: ",")
         }
         
+        delegate?.smartPageViewChanged(0, title: pageInfo[0].title)
         pageViewController?.setViewControllers([pageInfo[0].controller], direction: .forward, animated: false, completion: {done in })
         parentController?.addChildViewController(pageViewController!)
         
@@ -66,9 +72,10 @@ extension SmartPageView: UIPageViewControllerDelegate {
     }
     
     public func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        if let currentIndex = currentIndex , currentIndex < pageInfo.count {
+        if let currentIndex = currentIndex , currentIndex != NSNotFound {
             beforeIndex = currentIndex
             segmentHeader?.setSelectedIndex(currentIndex)
+            delegate?.smartPageViewChanged(currentIndex, title: pageInfo[currentIndex].title)
         }
     }
 }
@@ -127,8 +134,8 @@ extension SmartPageView: UIScrollViewDelegate {
     }
 }
 
-extension SmartPageView: SmartSegmentHeaderDelegate {
-    public func smartSegmentHeaderClicked(_ index: Int, title: String) {
+extension SmartPageView: SmartSegmentViewDelegate {
+    public func smartSegmentViewClicked(_ index: Int, title: String) {
         if let currentIndex = currentIndex {
             let header = segmentHeader
             segmentHeader = nil
@@ -136,11 +143,12 @@ extension SmartPageView: SmartSegmentHeaderDelegate {
             let direction = currentIndex < index ? UIPageViewControllerNavigationDirection.forward : UIPageViewControllerNavigationDirection.reverse
             pageViewController?.setViewControllers([pageInfo[index].controller], direction: direction, animated: true, completion: { (_) in
                 self.segmentHeader = header
+                self.delegate?.smartPageViewChanged(index, title: title)
             })
         }
     }
     
-    public func smartSegmentHeaderDidChanged(_ index: Int, title: String) {}
+    public func smartSegmentViewChanged(_ index: Int, title: String) {}
 }
 
 

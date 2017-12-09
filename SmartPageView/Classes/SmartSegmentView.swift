@@ -8,15 +8,15 @@
 
 import UIKit
 
-@objc public protocol SmartSegmentHeaderDelegate: NSObjectProtocol {
-    func smartSegmentHeaderClicked(_ index: Int, title: String)
-    func smartSegmentHeaderDidChanged(_ index: Int, title: String)
+@objc public protocol SmartSegmentViewDelegate: NSObjectProtocol {
+    func smartSegmentViewClicked(_ index: Int, title: String)
+    func smartSegmentViewChanged(_ index: Int, title: String)
 }
 
 @IBDesignable
-open class SmartSegmentHeaderView: UIView {
+open class SmartSegmentView: UIView {
 
-    @IBOutlet open weak var delegate: SmartSegmentHeaderDelegate?
+    @IBOutlet open weak var delegate: SmartSegmentViewDelegate?
     
     @IBInspectable var titles: String = "Page 1,Page 2,Page 3,Page 4,Page 5" {
         didSet {
@@ -94,7 +94,7 @@ open class SmartSegmentHeaderView: UIView {
 
 // Constraint
 
-extension SmartSegmentHeaderView {
+extension SmartSegmentView {
     
     func updateConstraintIndicatorDirection() {
         if let constraint = indicatorConstraints.position {
@@ -139,7 +139,7 @@ extension SmartSegmentHeaderView {
 
 // Custom
 
-extension SmartSegmentHeaderView {
+extension SmartSegmentView {
     
     func updateTitleAttributes() {
         let normalAttr: [NSAttributedStringKey:Any] = [
@@ -161,7 +161,7 @@ extension SmartSegmentHeaderView {
         for (index, item) in titleArray.enumerated() {
             let button = UIButton()
             button.setTitle(item, for: .normal)
-            button.addTarget(self, action: #selector(SmartSegmentHeaderView.onClickTap(segmentButton:)), for: .touchUpInside)
+            button.addTarget(self, action: #selector(SmartSegmentView.onClickTap(segmentButton:)), for: .touchUpInside)
             button.tag = index
             stackView.addArrangedSubview(button)
         }
@@ -176,7 +176,7 @@ extension SmartSegmentHeaderView {
         selectedIndex = newIndex
         
         if indexChanged {
-            delegate?.smartSegmentHeaderClicked(newIndex, title: titleArray[newIndex])
+            delegate?.smartSegmentViewClicked(newIndex, title: titleArray[newIndex])
         }
         
         setSelectedIndex(newIndex)
@@ -213,11 +213,11 @@ extension SmartSegmentHeaderView {
         if animated {
             UIView.animate(withDuration: 0.25, animations: {
                 self.layoutIfNeeded()
-                self.delegate?.smartSegmentHeaderDidChanged(index, title: self.titleArray[index])
+                self.delegate?.smartSegmentViewChanged(index, title: self.titleArray[index])
             })
         } else {
             self.layoutIfNeeded()
-            self.delegate?.smartSegmentHeaderDidChanged(index, title: titleArray[index])
+            self.delegate?.smartSegmentViewChanged(index, title: titleArray[index])
         }
     }
 }

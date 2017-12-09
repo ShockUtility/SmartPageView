@@ -29,6 +29,12 @@ class ViewController: UIViewController {
     }
 }
 
+extension ViewController: SmartPageDelegate {
+    func smartPageViewChanged(_ index: Int, title: String) {
+        self.title = "\(title) (index = \(index))"
+    }
+}
+
 
 
 
