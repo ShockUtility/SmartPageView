@@ -49,7 +49,6 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
                         <outlet property="smartPageView" destination="N5L-gu-shf" id="oMV-RS-V5G"/>
-                        <outlet property="smartSegmentHeaderView" destination="5UP-05-F5J" id="dYN-Bg-Ndb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
