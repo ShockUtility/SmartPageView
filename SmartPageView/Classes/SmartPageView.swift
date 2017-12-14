@@ -15,7 +15,7 @@ import UIKit
 open class SmartPageView: UIView {
 
     @IBOutlet open weak var delegate: SmartPageDelegate?
-    @IBOutlet var segmentHeader: SmartSegmentView?
+    @IBOutlet open var segmentHeader: SmartSegmentView?
     
     fileprivate var parentController: UIViewController?
     fileprivate var pageViewController: UIPageViewController?

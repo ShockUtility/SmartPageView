@@ -26,13 +26,13 @@ open class SmartSegmentView: UIView {
             updateButtons()
         }
     }
-    @IBInspectable var indicatorHeight   : CGFloat = 2.0 { didSet { updateConstraintIndicatorPosition() } }
-    @IBInspectable var isIndicatorFixed  : Bool = false  { didSet { updateConstraintIndicatorPosition() } }
-    @IBInspectable var isIndicatorTop    : Bool = false  { didSet { updateConstraintIndicatorDirection() } }
-    @IBInspectable var indicatorColor    : UIColor = #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1)  { didSet { self.indicatorView.backgroundColor = indicatorColor } }
-    @IBInspectable var titleFontSize     : CGFloat = 15  { didSet { updateTitleAttributes() } }
-    @IBInspectable var titleNormalColor  : UIColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)  { didSet { updateTitleAttributes() } }
-    @IBInspectable var titleSelectedColor: UIColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)  { didSet { updateTitleAttributes() } }
+    @IBInspectable open var indicatorHeight   : CGFloat = 2.0 { didSet { updateConstraintIndicatorPosition() } }
+    @IBInspectable open var isIndicatorFixed  : Bool = false  { didSet { updateConstraintIndicatorPosition() } }
+    @IBInspectable open var isIndicatorTop    : Bool = false  { didSet { updateConstraintIndicatorDirection() } }
+    @IBInspectable open var indicatorColor    : UIColor = #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1)  { didSet { self.indicatorView.backgroundColor = indicatorColor } }
+    @IBInspectable open var titleFontSize     : CGFloat = 15  { didSet { updateTitleAttributes() } }
+    @IBInspectable open var titleNormalColor  : UIColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)  { didSet { updateTitleAttributes() } }
+    @IBInspectable open var titleSelectedColor: UIColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)  { didSet { updateTitleAttributes() } }
 
     fileprivate var indicatorConstraints : (
         position: NSLayoutConstraint?,
