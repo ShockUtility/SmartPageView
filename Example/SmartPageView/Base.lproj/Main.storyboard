@@ -30,7 +30,6 @@
                                 <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="loF-yi-Znt"/>
-                                    <outlet property="segmentHeader" destination="5UP-05-F5J" id="nZN-As-oau"/>
                                 </connections>
                             </view>
                         </subviews>
@@ -50,6 +49,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
                         <outlet property="smartPageView" destination="N5L-gu-shf" id="oMV-RS-V5G"/>
+                        <outlet property="smartSegmentView" destination="5UP-05-F5J" id="ysN-db-23F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
