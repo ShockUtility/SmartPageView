@@ -41,16 +41,19 @@ open class SmartPageView: UIView {
         segmentHeader?.delegate = self
     }
     
-    public func setPageControllers(_ controller: UIViewController, pageInfo:[(title:String, controller: UIViewController)]) {
+    public func setPageControllers(_ controller: UIViewController, pageInfo:[(title:String, controller: UIViewController)], defaultPage: Int = 0) {
+        let firstPage = min(defaultPage, pageInfo.count-1)
+        
         self.parentController = controller
         self.pageInfo = pageInfo
 
         if let header = segmentHeader {
             header.titles = pageInfo.map{ $0.title }.joined(separator: ",")
+            header.setSelectedIndex(firstPage, animated: false)
         }
         
-        delegate?.smartPageViewChanged(0, title: pageInfo[0].title)
-        pageViewController?.setViewControllers([pageInfo[0].controller], direction: .forward, animated: false, completion: {done in })
+        delegate?.smartPageViewChanged(firstPage, title: pageInfo[firstPage].title)
+        pageViewController?.setViewControllers([pageInfo[firstPage].controller], direction: .forward, animated: false, completion: {done in })
         parentController?.addChildViewController(pageViewController!)
         
         if let pageView = pageViewController?.view {

@@ -25,7 +25,8 @@ class ViewController: UIViewController {
             pageInfo.append((title:"Page \(index+1)", controller:ctrl))
         }
         
-        self.smartPageView.setPageControllers(self, pageInfo: pageInfo)
+        self.smartPageView.setPageControllers(self, pageInfo: pageInfo, defaultPage: 1)
+        
     }
 }
 

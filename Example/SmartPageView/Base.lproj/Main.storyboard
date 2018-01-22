@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Delegate-->
+        <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="SmartPageView_Example" customModuleProvider="target" sceneMemberID="viewController">
@@ -29,7 +29,7 @@
                                 <rect key="frame" x="0.0" y="124" width="375" height="688"/>
                                 <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="loF-yi-Znt"/>
+                                    <outlet property="segmentHeader" destination="5UP-05-F5J" id="8d3-RG-fF2"/>
                                 </connections>
                             </view>
                         </subviews>
@@ -49,7 +49,6 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
                         <outlet property="smartPageView" destination="N5L-gu-shf" id="oMV-RS-V5G"/>
-                        <outlet property="smartSegmentView" destination="5UP-05-F5J" id="ysN-db-23F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
