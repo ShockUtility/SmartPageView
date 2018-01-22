@@ -19,7 +19,7 @@ open class SmartPageView: UIView {
     
     fileprivate var parentController: UIViewController?
     fileprivate var pageViewController: UIPageViewController?
-    fileprivate var pageInfo:[(title:String, controller: UIViewController)] = []
+    fileprivate var pageInfo = [(title:String, controller: UIViewController)]()
     fileprivate var beforeIndex: Int = 0
     fileprivate var shouldScrollCurrentBar: Bool = true
     
@@ -66,6 +66,61 @@ open class SmartPageView: UIView {
         }
         
         pageViewController!.didMove(toParentViewController: parentController)
+    }
+    
+    public func setPage(index: Int, direction: UIPageViewControllerNavigationDirection, isChangeHeader: Bool = true) {
+        let saveHeader = segmentHeader
+        
+        if !isChangeHeader {
+            segmentHeader = nil
+            saveHeader?.setSelectedIndex(index, animated: false)
+        }
+        
+        pageViewController?.setViewControllers([pageInfo[index].controller], direction: direction, animated: true, completion: { (_) in
+            if saveHeader != nil {
+                self.segmentHeader = saveHeader
+            }
+            self.delegate?.smartPageViewChanged(index, title: self.pageInfo[index].title)
+        })
+    }
+    
+    public func prevPage() {
+        if let idx = currentIndex, idx > 0 {
+            setPage(index: idx-1, direction: .reverse)
+        }
+    }
+    
+    public func nextPage() {
+        if let idx = currentIndex, idx < pageInfo.count-1 {
+            setPage(index: idx+1, direction: .forward)
+        }
+    }
+    
+    public func deleteCurrentPage() {
+        if pageInfo.count > 1, let idx = currentIndex {
+            if let saveHeader = segmentHeader {
+                segmentHeader = nil
+                var arrTitle =  saveHeader.titles.components(separatedBy: ",")
+                arrTitle.remove(at: idx)
+                saveHeader.titles = arrTitle.joined(separator: ",")
+                segmentHeader = saveHeader
+            }
+            pageInfo.remove(at: idx)
+            
+            let newPage = min(idx, pageInfo.count-1)
+            setPage(index: newPage, direction: (newPage == idx) ? .forward : .reverse, isChangeHeader: false)
+        }
+    }
+    
+    public func insertPage(title: String, controller: UIViewController, index: Int) {
+        if let header = segmentHeader {
+            var arrTitle =  header.titles.components(separatedBy: ",")
+            arrTitle.insert(title, at: index)
+            header.titles = arrTitle.joined(separator: ",")
+        }
+        pageInfo.insert((title: title, controller: controller), at: index)
+        
+        setPage(index: index, direction: .forward, isChangeHeader: false)
     }
 }
 
@@ -140,14 +195,8 @@ extension SmartPageView: UIScrollViewDelegate {
 extension SmartPageView: SmartSegmentViewDelegate {
     public func smartSegmentViewClicked(_ index: Int, title: String) {
         if let currentIndex = currentIndex {
-            let header = segmentHeader
-            segmentHeader = nil
-            
-            let direction = currentIndex < index ? UIPageViewControllerNavigationDirection.forward : UIPageViewControllerNavigationDirection.reverse
-            pageViewController?.setViewControllers([pageInfo[index].controller], direction: direction, animated: true, completion: { (_) in
-                self.segmentHeader = header
-                self.delegate?.smartPageViewChanged(index, title: title)
-            })
+            let direction:UIPageViewControllerNavigationDirection = currentIndex < index ? .forward : .reverse
+            setPage(index: index, direction: direction, isChangeHeader: false)
         }
     }
     

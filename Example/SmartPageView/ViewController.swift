@@ -13,6 +13,8 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var smartPageView: SmartPageView!
     
+    var currentPage = -1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,13 +28,32 @@ class ViewController: UIViewController {
         }
         
         self.smartPageView.setPageControllers(self, pageInfo: pageInfo, defaultPage: 1)
-        
     }
+    
+    @IBAction func onClickAdd(_ sender: Any) {
+        let ctrl = UIViewController()
+        ctrl.view.backgroundColor = [UIColor.green,UIColor.red,UIColor.blue][currentPage % 3]
+        
+        self.smartPageView.insertPage(title: "New", controller: ctrl, index: currentPage+1)
+    }
+    
+    @IBAction func onClickDelete(_ sender: Any) {
+        self.smartPageView.deleteCurrentPage()
+    }
+    
+    @IBAction func onClickPrev(_ sender: Any) {
+        self.smartPageView.prevPage()
+    }
+    
+    @IBAction func onClickNext(_ sender: Any) {
+        self.smartPageView.nextPage()
+    }    
 }
 
 extension ViewController: SmartPageDelegate {
     func smartPageViewChanged(_ index: Int, title: String) {
         self.title = "\(title) (index = \(index))"
+        currentPage = index
     }
 }
 
