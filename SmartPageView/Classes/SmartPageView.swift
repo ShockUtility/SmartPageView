@@ -9,7 +9,7 @@
 import UIKit
 
 @objc public protocol SmartPageDelegate: NSObjectProtocol {
-    func smartPageViewChanged(_ index: Int, title: String)
+    func smartPageViewChanged(_ title: String, index: Int, pageCount: Int)
 }
 
 open class SmartPageView: UIView {
@@ -52,7 +52,7 @@ open class SmartPageView: UIView {
             header.setSelectedIndex(firstPage, animated: false)
         }
         
-        delegate?.smartPageViewChanged(firstPage, title: pageInfo[firstPage].title)
+        delegate?.smartPageViewChanged(pageInfo[firstPage].title, index: firstPage, pageCount: pageInfo.count)
         pageViewController?.setViewControllers([pageInfo[firstPage].controller], direction: .forward, animated: false, completion: {done in })
         parentController?.addChildViewController(pageViewController!)
         
@@ -80,7 +80,7 @@ open class SmartPageView: UIView {
             if saveHeader != nil {
                 self.segmentHeader = saveHeader
             }
-            self.delegate?.smartPageViewChanged(index, title: self.pageInfo[index].title)
+            self.delegate?.smartPageViewChanged(self.pageInfo[index].title, index: index, pageCount: self.pageInfo.count)
         })
     }
     
@@ -133,7 +133,7 @@ extension SmartPageView: UIPageViewControllerDelegate {
         if let currentIndex = currentIndex , currentIndex != NSNotFound {
             beforeIndex = currentIndex
             segmentHeader?.setSelectedIndex(currentIndex)
-            delegate?.smartPageViewChanged(currentIndex, title: pageInfo[currentIndex].title)
+            delegate?.smartPageViewChanged(pageInfo[currentIndex].title, index: currentIndex, pageCount: pageInfo.count)
         }
     }
 }
