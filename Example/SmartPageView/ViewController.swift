@@ -51,8 +51,8 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: SmartPageDelegate {
-    func smartPageViewChanged(_ index: Int, title: String) {
-        self.title = "\(title) (index = \(index))"
+    func smartPageViewChanged(_ title: String, index: Int, pageCount: Int) {
+        self.title = "\(title)/\(pageCount) (index = \(index))"
         currentPage = index
     }
 }
