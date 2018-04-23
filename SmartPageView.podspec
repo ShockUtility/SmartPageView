@@ -9,9 +9,9 @@
 Pod::Spec.new do |s|
   s.name             = 'SmartPageView'
   s.version          = '0.2.1'
-  s.summary          = 'A short description of SmartPageView.'
+  s.summary          = 'Simple PageViewController.'
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+SmartPageView is Simple PageViewController.
                        DESC
 
   s.homepage         = 'https://github.com/ShockUtility/SmartPageView'
