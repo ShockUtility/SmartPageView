@@ -8,6 +8,8 @@
 
 import UIKit
 
+public typealias SmartPageInfo = (title: String, controller: UIViewController)
+
 @objc public protocol SmartPageDelegate: NSObjectProtocol {
     func smartPageViewChanged(_ title: String, index: Int, pageCount: Int)
 }
@@ -19,11 +21,10 @@ open class SmartPageView: UIView {
     
     fileprivate var parentController: UIViewController?
     fileprivate var pageViewController: UIPageViewController?
-    fileprivate var pageInfo = [(title:String, controller: UIViewController)]()
     fileprivate var beforeIndex: Int = 0
     fileprivate var shouldScrollCurrentBar: Bool = true
-    
-    var currentIndex: Int? {
+    fileprivate var pageInfo = [SmartPageInfo]()
+    fileprivate var currentIndex: Int? {
         guard let viewController = pageViewController?.viewControllers?.first else {
             return nil
         }
@@ -35,7 +36,7 @@ open class SmartPageView: UIView {
         pageViewController!.delegate = self
         pageViewController!.dataSource = self
         
-        let scrollView = pageViewController?.view.subviews.flatMap { $0 as? UIScrollView }.first
+        let scrollView = pageViewController?.view.subviews.compactMap { $0 as? UIScrollView }.first
         scrollView?.scrollsToTop = false
         scrollView?.delegate = self
         segmentHeader?.delegate = self
@@ -121,6 +122,13 @@ open class SmartPageView: UIView {
         pageInfo.insert((title: title, controller: controller), at: index)
         
         setPage(index: index, direction: .forward, isChangeHeader: false)
+    }
+    
+    public var currentController: UIViewController? {
+        if pageInfo.count > 0, let idx = currentIndex {
+            return pageInfo[idx].controller
+        }
+        return nil
     }
 }
 

@@ -47,7 +47,7 @@ class ViewController: UIViewController {
     
     @IBAction func onClickNext(_ sender: Any) {
         self.smartPageView.nextPage()
-    }    
+    }
 }
 
 extension ViewController: SmartPageDelegate {
