@@ -86,7 +86,7 @@ open class SmartSegmentView: UIView {
     override open func willMove(toSuperview newSuperview: UIView?) {
         addSubview(stackView)
         addSubview(indicatorView)
-        bringSubview(toFront: indicatorView)
+        bringSubviewToFront(indicatorView)
         
         updateButtons()
     }
@@ -142,12 +142,12 @@ extension SmartSegmentView {
 extension SmartSegmentView {
     
     func updateTitleAttributes() {
-        let normalAttr: [NSAttributedStringKey:Any] = [
-            NSAttributedStringKey.foregroundColor : titleNormalColor,
-            NSAttributedStringKey.font : UIFont.systemFont(ofSize: titleFontSize)]
-        let selectedAttr: [NSAttributedStringKey:Any] = [
-            NSAttributedStringKey.foregroundColor : titleSelectedColor,
-            NSAttributedStringKey.font : UIFont.boldSystemFont(ofSize: titleFontSize)]
+        let normalAttr: [NSAttributedString.Key:Any] = [
+            NSAttributedString.Key.foregroundColor : titleNormalColor,
+            NSAttributedString.Key.font : UIFont.systemFont(ofSize: titleFontSize)]
+        let selectedAttr: [NSAttributedString.Key:Any] = [
+            NSAttributedString.Key.foregroundColor : titleSelectedColor,
+            NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: titleFontSize)]
         
         for case let button as UIButton in stackView.arrangedSubviews {
             if let title = button.title(for: .normal) {

@@ -55,7 +55,7 @@ open class SmartPageView: UIView {
         
         delegate?.smartPageViewChanged(pageInfo[firstPage].title, index: firstPage, pageCount: pageInfo.count)
         pageViewController?.setViewControllers([pageInfo[firstPage].controller], direction: .forward, animated: false, completion: {done in })
-        parentController?.addChildViewController(pageViewController!)
+        parentController?.addChild(pageViewController!)
         
         if let pageView = pageViewController?.view {
             self.addSubview(pageView)
@@ -66,10 +66,10 @@ open class SmartPageView: UIView {
             self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[pageView]|", options: .alignAllCenterX, metrics: nil, views: views))
         }
         
-        pageViewController!.didMove(toParentViewController: parentController)
+        pageViewController!.didMove(toParent: parentController)
     }
     
-    public func setPage(index: Int, direction: UIPageViewControllerNavigationDirection, isChangeHeader: Bool = true) {
+    public func setPage(index: Int, direction: UIPageViewController.NavigationDirection, isChangeHeader: Bool = true) {
         let saveHeader = segmentHeader
         
         if !isChangeHeader {
@@ -203,7 +203,7 @@ extension SmartPageView: UIScrollViewDelegate {
 extension SmartPageView: SmartSegmentViewDelegate {
     public func smartSegmentViewClicked(_ index: Int, title: String) {
         if let currentIndex = currentIndex {
-            let direction:UIPageViewControllerNavigationDirection = currentIndex < index ? .forward : .reverse
+            let direction:UIPageViewController.NavigationDirection = currentIndex < index ? .forward : .reverse
             setPage(index: index, direction: direction, isChangeHeader: false)
         }
     }
