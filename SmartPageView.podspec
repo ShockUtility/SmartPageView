@@ -27,3 +27,7 @@ end
 
 # 새로운 버전 생성 후 github.com 에서 릴리스 버전 생성하고 다음의 커맨드로 배포해야된다
 # pod trunk push SmartPageView.podspec --verbose --allow-warnings
+#
+# 업데이트가 오래되서 'Authentication token is invalid or unverified' 오류 발생할 경우
+# pod trunk register shock@docs.kr 'ShockUtility'
+# 메일로 받은 링크를 클릭하면 인증이 완료된다.
