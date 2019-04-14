@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SmartPageView'
-  s.version          = '0.2.3'
+  s.version          = '0.2.5'
   s.summary          = 'Simple PageViewController.'
   s.description      = <<-DESC
 SmartPageView is Simple PageViewController.
@@ -19,8 +19,8 @@ SmartPageView is Simple PageViewController.
   s.author           = { 'ShockUtility' => 'shock@docs.kr' }
   s.source           = { :git => 'https://github.com/ShockUtility/SmartPageView.git', :tag => s.version.to_s }
 
-  s.swift_version    = '4.2'
-  s.ios.deployment_target = '9.0'
+  s.swift_version    = '5.0'
+  s.ios.deployment_target = '10.0'
 
   s.source_files = 'SmartPageView/Classes/**/*'
 end

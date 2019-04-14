@@ -28,7 +28,7 @@ open class SmartPageView: UIView {
         guard let viewController = pageViewController?.viewControllers?.first else {
             return nil
         }
-        return pageInfo.map({$0.controller}).index(of: viewController)
+        return pageInfo.map({$0.controller}).firstIndex(of: viewController)
     }
 
     override open func awakeFromNib() {
@@ -156,7 +156,7 @@ extension SmartPageView: UIPageViewControllerDataSource {
     }
     
     func indexOfViewController(_ viewController: UIViewController) -> Int {
-        return pageInfo.map({$0.controller}).index(of: viewController) ?? NSNotFound
+        return pageInfo.map({$0.controller}).firstIndex(of: viewController) ?? NSNotFound
     }
     
     // MARK: - Page View Controller Data Source
